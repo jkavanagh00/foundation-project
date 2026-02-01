@@ -32,7 +32,7 @@ let cards = [
         {
         name: "poppy",
         id: 7,
-        location: "images/poppy.png"
+        location: "./images/poppy.png"
     },
         {
         name: "thrust",
@@ -68,8 +68,7 @@ function populateCardGrid(cardArray) {
                     <img src=${cardArray[i].location} alt="card front" style="width:300px;height:300px;border-radius: 40px;">
                 </div>
             </div>
-        </div>`
+        </div>`;
+        cardGrid.innerHTML += markup;
     }
 }
-
-console.log(initialiseCardArray(cards))
