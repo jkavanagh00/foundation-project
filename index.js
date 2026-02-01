@@ -207,5 +207,8 @@ function resetAllCards() {
 }
 
 function updateTimer(time) {
-    console.log(time);
+    const timer = document.getElementById("timer");
+    let minutes = Math.floor(time/60);
+    let seconds = time % 60;
+    timer.innerHTML = `${minutes}:${seconds}`;
 }
