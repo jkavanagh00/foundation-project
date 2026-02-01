@@ -43,7 +43,5 @@
   gap: 20px;
   padding: 20px;
   background-color: aliceblue;
-  font-family:
-    "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  border-radius: 10px;
 }
