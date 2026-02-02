@@ -1,14 +1,22 @@
 /** @format */
 
-h1 {
+body {
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #dff1ff, #f7faff);
+  margin: 0;
+  padding: 10px 0;
   text-align: center;
-  font-size: 5vw;
 }
 
-header {
-  background-color: grey;
-  font-size: 4vw;
-  padding-left: 10px;
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #444;
+  letter-spacing: 1px;
+}
+
+h1 {
+  text-align: center;
 }
 
 .flip-card {
@@ -59,7 +67,44 @@ header {
 
 .game-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  padding: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.label {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+#timer,
+#moves {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+#game-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 12px 18px;
+  background: #ffffffcc;
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  font-family: Arial, sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }

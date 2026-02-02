@@ -59,7 +59,7 @@ let cards = [
 
 let cardsShowing = false;
 let lastCard = null;
-let guesses = 0;
+let moves = 0;
 let matches = 0;
 
 
@@ -145,8 +145,8 @@ function attachCardListeners() {
                         matches++;
                         console.log(`matches: ${matches}`);
                     } else {
-                        guesses++;
-                        console.log(`guesses: ${guesses}`)
+                        moves++;
+                        console.log(`moves: ${moves}`)
                     }
                     // update boolean to track that no card is revealed;
                     cardsShowing = false;
@@ -156,7 +156,7 @@ function attachCardListeners() {
                     lastCard = null;
                     // update boolean to track that card is face up;
                     card.cardData.flipped = true;
-                    updateCounters();
+                    updateCounters(moves, matches);
                 }
                 // reveal the card by toggling the flipped CSS class;
                 this.classList.toggle('flipped');
@@ -200,7 +200,9 @@ function resetAllCards() {
     }
 }
 
-function updateCounters() {
-    const header = document.getElementById('header');
-    header.innerHTML = `Guesses: ${guesses}<br>Matches: ${matches}`
+function updateCounters(moves, matches) {
+    const movesDOM = document.getElementById('moves');
+    movesDOM.innerHTML = `${moves}`;
+    const matchesDOM = document.getElementById('matches');
+    matchesDOM.innerHTML = `${matches}`;
 }
