@@ -61,6 +61,8 @@ let cardsShowing = false;
 let lastCard = null;
 let mistakes = 0;
 let matches = 0;
+let newGame = true;
+let time = 0;
 
 
 // Fisher-Yates sorting algorithm;
@@ -121,7 +123,13 @@ function attachCardListeners() {
 
         // add event listeners to DOM cards to control UI input logic;
         card.addEventListener('click', function () {
-
+            if (newGame) {
+                newGame = false;
+                setInterval(() => {
+                    time++;
+                    updateTimer(time);
+                }, 1000);
+            }
             // check if card is already face up and do nothing if it is;
             if (card.cardData.flipped === true) {
                 console.log("revealed card clicked")
@@ -197,4 +205,11 @@ function resetAllCards() {
             card.cardData.flipped = false;
         }
     }
+}
+
+function updateTimer(time) {
+    const timer = document.getElementById("timer");
+    let minutes = String(Math.floor(time/60)).padStart(2, '0');
+    let seconds = String(time % 60).padStart(2, '0');
+    timer.innerHTML = `${minutes}:${seconds}`;
 }
