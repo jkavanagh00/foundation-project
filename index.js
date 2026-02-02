@@ -57,13 +57,14 @@ let cards = [
     },
 ];
 
-let cardsShowing = false;
+let isCardShowing = false;
+let isNewGame = true;
+
 let lastCard = null;
+
+let time = 0;
 let moves = 0;
 let matches = 0;
-let newGame = true;
-let time = 0;
-
 
 // Fisher-Yates sorting algorithm;
 function shuffle(array) {
@@ -123,8 +124,8 @@ function attachCardListeners() {
 
         // add event listeners to DOM cards to control UI input logic;
         card.addEventListener('click', function () {
-            if (newGame) {
-                newGame = false;
+            if (isNewGame) {
+                isNewGame = false;
                 setInterval(() => {
                     time++;
                     updateTimer(time);
@@ -137,9 +138,9 @@ function attachCardListeners() {
                 // if card is face down go to main UI control flow;
             } else {
                 // if there are no cards showing;
-                if (!cardsShowing) {
+                if (!isCardShowing) {
                     // update boolean to track that a card is revealed;
-                    cardsShowing = true;
+                    isCardShowing = true;
                     // update number to store the index of this card;
                     lastCard = i;
                     // update flipped state on the DOM card;
@@ -157,7 +158,7 @@ function attachCardListeners() {
                         console.log(`moves: ${moves}`)
                     }
                     // update boolean to track that no card is revealed;
-                    cardsShowing = false;
+                    isCardShowing = false;
                     // call function to reset flipped cards;
                     resetCards();
                     // reset last card to null state;
@@ -220,4 +221,19 @@ function updateTimer(time) {
     let minutes = String(Math.floor(time / 60)).padStart(2, '0');
     let seconds = String(time % 60).padStart(2, '0');
     timer.innerHTML = `${minutes}:${seconds}`;
+}
+
+function startNewGame() {
+    resetAllCards();
+    setTimeout(() => {
+        document.getElementById('game-grid').innerHTML = '';
+        populateCardGrid(initialiseCardArray(cards));
+        attachCardListeners();
+        isCardShowing = false;
+        isNewGame = true;
+        lastCard = null;
+        time = 0;
+        moves = 0;
+        matches = 0;
+    }, 800)
 }

@@ -1,6 +1,30 @@
 /** @format */
 
+body {
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #dff1ff, #f7faff);
+  margin: 0;
+  padding: 10px 0;
+  text-align: center;
+}
 
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #444;
+  letter-spacing: 1px;
+}
+
+.button {
+  background-color: black;
+  border-radius: 5px;
+  color: #dff1ff;
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 1.5vh;
+  padding: 5px;
+  margin: 5px;
+}
 
 body {
   font-family: "Segoe UI", Arial, Helvetica, sans-serif;
