@@ -9,7 +9,15 @@
 
 <body>
     <h1>FlipMaster</h1>
-
+    <div id="game-stats">
+        <div class="stat">
+            <span class="label">Time</span>
+            <span id="timer">00:00</span>
+        </div>
+        <div class="stat"></div>
+        <span class="label">moves</span>
+        <span id="moves">0</span>
+    </div>
     <div class="game-grid" id="game-grid"></div>
     <script>
         populateCardGrid(initialiseCardArray(cards));
