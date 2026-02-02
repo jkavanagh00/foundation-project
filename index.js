@@ -214,3 +214,10 @@ function updateCounters(moves, matches) {
     const matchesDOM = document.getElementById('matches');
     matchesDOM.innerHTML = `${matches}`;
 }
+
+function updateTimer(time) {
+    const timer = document.getElementById('timer');
+    let minutes = String(Math.floor(time / 60)).padStart(2, '0');
+    let seconds = String(time % 60).padStart(2, '0');
+    timer.innerHTML = `${minutes}:${seconds}`;
+}
