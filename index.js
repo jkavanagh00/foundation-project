@@ -124,6 +124,7 @@ function attachCardListeners() {
         // add event listeners to DOM cards to control UI input logic;
         card.addEventListener('click', function () {
             if (newGame) {
+                newGame = false;
                 setInterval(() => {
                     time++;
                     updateTimer(time);
@@ -208,7 +209,7 @@ function resetAllCards() {
 
 function updateTimer(time) {
     const timer = document.getElementById("timer");
-    let minutes = Math.floor(time/60);
-    let seconds = time % 60;
-    timer.innerHTML = `0${minutes}:${seconds}`;
+    let minutes = String(Math.floor(time/60)).padStart(2, '0');
+    let seconds = String(time % 60).padStart(2, '0');
+    timer.innerHTML = `${minutes}:${seconds}`;
 }
