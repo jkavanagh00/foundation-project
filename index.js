@@ -210,5 +210,5 @@ function updateTimer(time) {
     const timer = document.getElementById("timer");
     let minutes = Math.floor(time/60);
     let seconds = time % 60;
-    timer.innerHTML = `${minutes}:${seconds}`;
+    timer.innerHTML = `0${minutes}:${seconds}`;
 }
