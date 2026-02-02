@@ -1,57 +1,57 @@
 let cards = [
     {
-        name: "battery",
+        name: "boomerang",
         id: 1,
-        location: "images/battery-minus.png",
+        location: "images/boomerang.png",
         solved: false,
         flipped: false
     },
     {
-        name: "biplane",
+        name: "comb",
         id: 2,
-        location: "images/biplane.png",
+        location: "images/comb.png",
         solved: false,
         flipped: false
     },
     {
-        name: "card-pickup",
+        name: "feline",
         id: 3,
-        location: "images/card-pickup.png",
-        solved: false,
-        flipped: false
-    },
-    {
-        name: "card-play",
-        id: 4,
-        location: "images/card-play.png",
-        solved: false,
-        flipped: false
-    },
-    {
-        name: "chocolate-bar",
-        id: 5,
-        location: "images/chocolate-bar.png",
+        location: "images/feline.png",
         solved: false,
         flipped: false
     },
     {
         name: "hearts",
-        id: 6,
+        id: 4,
         location: "images/hearts.png",
         solved: false,
         flipped: false
     },
     {
-        name: "poppy",
-        id: 7,
-        location: "./images/poppy.png",
+        name: "leaf",
+        id: 5,
+        location: "images/leaf.png",
         solved: false,
         flipped: false
     },
     {
-        name: "thrust",
+        name: "spades",
+        id: 6,
+        location: "images/spades.png",
+        solved: false,
+        flipped: false
+    },
+    {
+        name: "star",
+        id: 7,
+        location: "./images/star.png",
+        solved: false,
+        flipped: false
+    },
+    {
+        name: "wing",
         id: 8,
-        location: "images/thrust.png",
+        location: "images/wing.png",
         solved: false,
         flipped: false
     },
@@ -96,10 +96,10 @@ function populateCardGrid(cardArray) {
         const markup = `
         <div class="flip-card">
             <div class="flip-card-inner">
-                <div class="flip-card-front">
+                <div class="flip-card-back">
                     <img src="images/back.png" alt="card back">
                 </div>
-                <div class="flip-card-back">
+                <div class="flip-card-front">
                     <img src="${cardArray[i].location}" alt="card front">
                 </div>
             </div>

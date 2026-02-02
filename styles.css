@@ -1,43 +1,27 @@
 /** @format */
 
+
+
 body {
   font-family: "Segoe UI", Arial, Helvetica, sans-serif;
-  background: linear-gradient(135deg, #dff1ff, #f7faff);
+  background: linear-gradient(90deg, #ffce1b, #e35336);
   margin: 0;
   padding: 10px 0;
   text-align: center;
 }
 
 .title {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
+  font-size: 8rem;
+  margin: 0 0 2vh 0;
   color: #444;
   letter-spacing: 1px;
-}
-
-body {
-  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
-  background: linear-gradient(135deg, #dff1ff, #f7faff);
-  margin: 0;
-  padding: 10px 0;
-  text-align: center;
-}
-
-.title {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-  color: #444;
-  letter-spacing: 1px;
-}
-
-h1 {
   text-align: center;
 }
 
 .flip-card {
   background-color: transparent;
-  width: 150px;
-  height: 150px;
+  width: 100%;
+  height: 100%;
   perspective: 2000px;
   cursor: pointer;
 }
@@ -64,16 +48,22 @@ h1 {
   backface-visibility: hidden;
 }
 
-.flip-card-front {
+.flip-card-back {
   color: black;
 }
 
-.flip-card-back {
+.flip-card-front {
   transform: rotateY(180deg);
 }
 
-.flip-card-front img,
 .flip-card-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.flip-card-front img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -82,38 +72,56 @@ h1 {
 
 .game-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 15px;
-  width: 90%;
-  max-width: 600px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 20px;
+  width: 90vw;
+  max-width: 800px;
+  aspect-ratio: 1;
   margin: 0 auto;
+  background-color: #35654d;
+  padding: 15px;
+  border-radius: 20px;
+}
+
+@media (max-width: 480px) {
+  .game-grid {
+    width: 95vw;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .flip-card {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .label {
-  color: #666;
-  font-size: 0.9rem;
+  color: #fdc91d;
+  font-size: 1.5rem;
 }
 
 #timer,
-#moves {
-  font-size: 1.5rem;
+#moves,
+#matches {
+  font-size: 2.5rem;
   font-weight: bold;
-  color: #333;
+  color: #d3d3d3;
 }
 
 #game-stats {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: top;
+  background-image: url("images/table.jpg");
   width: 90%;
-  max-width: 600px;
+  max-width: 800px;
   margin: 20px auto;
   padding: 12px 18px;
-  background: #ffffffcc;
   backdrop-filter: blur(6px);
   border-radius: 12px;
   font-family: Arial, sans-serif;
-  font-size: 1.2rem;
   font-weight: bold;
   color: #333;
 }

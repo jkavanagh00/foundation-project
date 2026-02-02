@@ -8,20 +8,22 @@
 </head>
 
 <body>
-    <h1>FlipMaster</h1>
+    <h1 class="title">FlipMaster</h1>
+    <div class="game-grid" id="game-grid"></div>
     <div id="game-stats">
         <div class="stat">
             <span class="label">Time</span>
             <span id="timer">00:00</span>
         </div>
         <div class="stat">
-            <span class="label">Moves: </span>
+            <span class="label">Moves</span>
             <span id="moves">0</span>
-            <span class="label">Matches: </span>
+        </div>
+        <div class="stat">
+            <span class="label">Matches</span>
             <span id="matches">0</span>
         </div>
     </div>
-    <div class="game-grid" id="game-grid"></div>
     <script>
         populateCardGrid(initialiseCardArray(cards));
         attachCardListeners();
