@@ -8,6 +8,7 @@ export default class Game {
         this.moves = 0;
         this.matches = 0;
         this.timerInterval = null;
+        this.isLocked = false; // Add this line
     }
 
     createCardArray(targetLength) {
@@ -79,12 +80,15 @@ export default class Game {
     attachCardListeners() {
         const cards = document.querySelectorAll('.flip-card');
 
-        // iterate through array of DOM cards;
         for (let i = 0; i < cards.length; i++) {
             const card = cards[i];
 
-            // add event listeners to DOM cards to control UI input logic;
             card.addEventListener('click', () => {
+                // check if game is locked before processing any input;
+                if (this.isLocked) {
+                    return;
+                }
+
                 if (this.isNewGame) {
                     this.isNewGame = false;
                     this.timerInterval = setInterval(() => {
@@ -154,21 +158,19 @@ export default class Game {
 
     resetCards() {
         const cards = document.querySelectorAll('.flip-card');
+        // lock input at start of reset;
+        this.isLocked = true;
 
-        // set a 1.5 second timer before calling the main function logic
         setTimeout(() => {
-            // iterate through all DOM cards
             for (let i = 0; i < cards.length; i++) {
                 const card = cards[i];
-                // check that card is face up and that it has not been solved
                 if (card.cardData.flipped === true && card.cardData.solved === false) {
-                    // flip the card face down
                     card.classList.toggle('flipped');
-                    // update boolean to track that card is face down
                     card.cardData.flipped = false;
                 }
             }
-            // time out length in milliseconds
+            // unlock input after reset completes;
+            this.isLocked = false;
         }, 1500);
     }
 
