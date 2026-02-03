@@ -1,6 +1,6 @@
 export default class Game {
     constructor(totalCards) {
-        this.cards = this.createCardArray(totalCards);
+        this.cards = this.createCardArray(totalCards/2);
         this.isCardShowing = false;
         this.isNewGame = true;
         this.lastCard = null;
@@ -203,11 +203,11 @@ export default class Game {
         timer.innerHTML = `${minutes}:${seconds}`;
     }
 
-    startNewGame() {
+    startNewGame(numberOfCards) {
         this.resetAllCards();
         setTimeout(() => {
             document.getElementById('game-grid').innerHTML = '';
-            this.cards = this.createCardArray(8);
+            this.cards = this.createCardArray(numberOfCards/2);
             this.populateCardGrid(this.initialiseCardArray(this.cards));
             this.isCardShowing = false;
             this.isNewGame = true;
