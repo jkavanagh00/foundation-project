@@ -63,6 +63,12 @@ body {
   transform: rotateY(180deg);
 }
 
+.flip-card.solved {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 2s linear;
+}
+
 .flip-card-front,
 .flip-card-back {
   position: absolute;

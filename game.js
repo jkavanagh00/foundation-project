@@ -112,6 +112,7 @@ export default class Game {
                             // update the solved state on both DOM card;
                             card.cardData.solved = true;
                             cards[this.lastCard].cardData.solved = true;
+                            this.fadeOutCard(card.cardData.id);
                             this.matches++;
                             console.log(`matches: ${this.matches}`);
                         } else {
@@ -133,6 +134,22 @@ export default class Game {
                 }
             });
         }
+    }
+
+    fadeOutCard(id) {
+        const cards = document.querySelectorAll('.flip-card');
+
+        // set a 1.5 second timer before calling the main function logic
+        setTimeout(() => {
+            // iterate through all DOM cards
+            for (let i = 0; i < cards.length; i++) {
+                const card = cards[i];
+                if (card.cardData.id === id) {
+                    card.classList.toggle('solved');
+                }
+            }
+            // time out length in milliseconds
+        }, 1500);
     }
 
     resetCards() {
