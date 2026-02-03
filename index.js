@@ -1,61 +1,4 @@
-let cards = [
-    {
-        name: "boomerang",
-        id: 1,
-        location: "images/boomerang.png",
-        solved: false,
-        flipped: false
-    },
-    {
-        name: "comb",
-        id: 2,
-        location: "images/comb.png",
-        solved: false,
-        flipped: false
-    },
-    {
-        name: "feline",
-        id: 3,
-        location: "images/feline.png",
-        solved: false,
-        flipped: false
-    },
-    {
-        name: "hearts",
-        id: 4,
-        location: "images/hearts.png",
-        solved: false,
-        flipped: false
-    },
-    {
-        name: "leaf",
-        id: 5,
-        location: "images/leaf.png",
-        solved: false,
-        flipped: false
-    },
-    {
-        name: "spades",
-        id: 6,
-        location: "images/spades.png",
-        solved: false,
-        flipped: false
-    },
-    {
-        name: "star",
-        id: 7,
-        location: "./images/star.png",
-        solved: false,
-        flipped: false
-    },
-    {
-        name: "wing",
-        id: 8,
-        location: "images/wing.png",
-        solved: false,
-        flipped: false
-    },
-];
+let cards = createCardArray(8);
 
 let isCardShowing = false;
 let isNewGame = true;
@@ -227,6 +170,7 @@ function startNewGame() {
     resetAllCards();
     setTimeout(() => {
         document.getElementById('game-grid').innerHTML = '';
+        createCardArray(8);
         populateCardGrid(initialiseCardArray(cards));
         attachCardListeners();
         isCardShowing = false;
@@ -236,4 +180,20 @@ function startNewGame() {
         moves = 0;
         matches = 0;
     }, 800)
+}
+
+function createCardArray(total) {
+    const cardNames = ["boomerang", "comb", "feline", "hearts", "leaf", "spades", "star", "wing"];
+    const cardArray = [];
+    for (let i = 0; i < total; i++) {
+        cardArray.push({
+        name: cardNames[i],
+        id: i+1,
+        location: `images/${cardNames[i]}.png`,
+        solved: false,
+        flipped: false
+    })
+    }
+
+    return cardArray;
 }
