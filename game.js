@@ -118,6 +118,9 @@ export default class Game {
                             cards[this.lastCard].cardData.solved = true;
                             this.fadeOutCard(card.cardData.id);
                             this.matches++;
+                            if (this.matches === this.cards.length) {
+                                this.displayWin();
+                            }
                             console.log(`matches: ${this.matches}`);
                         } else {
                             this.moves++;
@@ -203,8 +206,15 @@ export default class Game {
         timer.innerHTML = `${minutes}:${seconds}`;
     }
 
+    displayWin() {
+        const popup = document.getElementById('win-popup');
+        popup.classList.toggle('show');
+    }
+
     startNewGame() {
-        this.resetAllCards();
+        const popupText = document.getElementById('win-popup');
+        popupText.classList.remove('show');
+
         setTimeout(() => {
             document.getElementById('game-grid').innerHTML = '';
             this.cards = this.createCardArray(8);
@@ -215,8 +225,11 @@ export default class Game {
             this.time = 0;
             this.moves = 0;
             this.matches = 0;
+            updateCounters(moves, matches);
+            updateTimer(time);
             if (this.timerInterval) {
                 clearInterval(this.timerInterval);
+                this.resetAllCards();
                 this.timerInterval = null;
             }
         }, 800);
