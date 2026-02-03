@@ -12,7 +12,7 @@ export default class Game {
     }
 
     createCardArray(targetLength) {
-        const cardNames = ["boomerang", "comb", "feline", "hearts", "leaf", "spades", "star", "wing"];
+        const cardNames = this.shuffle(["boomerang", "comb", "feline", "hearts", "leaf", "spades", "star", "wing", "basketball", "car", "banana", "lamp", "fish", "jigsaw", "plane", "controller"]);
         const cardArray = [];
         for (let i = 0; i < targetLength; i++) {
             cardArray.push({
