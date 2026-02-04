@@ -225,8 +225,8 @@ export default class Game {
             this.time = 0;
             this.moves = 0;
             this.matches = 0;
-            updateCounters(moves, matches);
-            updateTimer(time);
+            this.updateCounters(this.moves, this.matches);
+            this.updateTimer(time);
             if (this.timerInterval) {
                 clearInterval(this.timerInterval);
                 this.resetAllCards();
