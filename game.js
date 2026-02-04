@@ -8,21 +8,36 @@ export default class Game {
         this.moves = 0;
         this.matches = 0;
         this.timerInterval = null;
-        this.isLocked = false; // Add this line
+        this.isLocked = false;
     }
 
-    createCardArray(targetLength) {
-        const cardNames = ["boomerang", "comb", "feline", "hearts", "leaf", "spades", "star", "wing"];
-        const cardArray = [];
-        for (let i = 0; i < targetLength; i++) {
-            cardArray.push({
-                name: cardNames[i],
-                id: i + 1,
-                location: `images/${cardNames[i]}.png`,
-                solved: false,
-                flipped: false
-            })
+    createCardArray(targetLength, style = "classic") {
+        let cardNames = [];
+        if (style === "playing-cards") {
+            const numbers = ["ace", '2', '3', '4', '5', '6', '7', '8', '9', '10', "jack", "queen", "king"];
+            const suits = ["hearts", "diamonds", "clubs", "spades"];
+            while (cardNames.length < targetLength) {
+                const randomNumber = numbers[Math.floor(Math.random() * numbers.length)];
+                const randomSuit = suits[Math.floor(Math.random() * suits.length)];
+                const randomCard = `${randomNumber}-${randomSuit}`;
+                if (!cardNames.includes(randomCard)) {
+                    cardNames.push(randomCard);
+                }
+            }
+        } else if (style === "classic") {
+            cardNames = ["boomerang", "comb", "feline", "hearts", "leaf", "spades", "star", "wing"];
         }
+
+         const cardArray = [];
+            for (let i = 0; i < targetLength; i++) {
+                cardArray.push({
+                    name: cardNames[i],
+                    id: i + 1,
+                    location: `images/${style}/${cardNames[i]}.png`,
+                    solved: false,
+                    flipped: false
+                })
+            }
 
         return cardArray;
     }
