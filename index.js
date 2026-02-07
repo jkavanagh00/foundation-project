@@ -59,6 +59,7 @@ function initializeCardArray(cards) {
 
 function populateCardGrid(cardArray) {
   const cardGrid = document.getElementById("game-grid");
+  cardGrid.innerHTML = ""; // clear old cards
   for (let i = 0; i < cardArray.length; i++) {
     const markup = `
         <div class="flip-card">
@@ -71,7 +72,8 @@ function populateCardGrid(cardArray) {
                 </div>
             </div>
         </div>`;
+    cardGrid.innerHTML += markup;
   }
 }
 
-console.log(initialiseCardArray(cards));
+console.log(initializeCardArray(cards));
