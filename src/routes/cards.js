@@ -6,7 +6,7 @@ const db = require("../db");
 //GET cards for a deck
 router.get("/deck/:deckId", async (req, res) => {
   const cards = await db("cards").where({
-    deck_id: requestAnimationFrame.params.deckId,
+    deck_id: req.params.deckId,
   });
   res.json(cards);
 });

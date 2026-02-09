@@ -1,0 +1,26 @@
+{
+  "name": "foundation-project",
+  "version": "1.0.0",
+  "description": "Foundation project for Hack Your Future. Memory game made according to the following brief: https://program.hackyourfuture.dk/course-content/foundation/final-project/project-brief",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jkavanagh00/foundation-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/jkavanagh00/foundation-project/issues"
+  },
+  "homepage": "https://github.com/jkavanagh00/foundation-project#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "knex": "^3.1.0",
+    "mysql2": "^3.16.3"
+  }
+}
