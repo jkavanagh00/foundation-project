@@ -2,31 +2,22 @@
 
 exports.seed = async function (knex) {
   await knex("games").del();
+  
   const games = [];
-  const playerCount = 5; //number of players
-  const deckCount = 10; //number of decks
-  let id = 1;
-  for (let playerId = 1; playerId <= playerCount; playerId++) {
-    for (let deckId = 1; deckId <= deckCount; deckId++) {
+  
+  // Generate 50 games for 5 players, using only deck_id 1-4
+  for (let playerId = 1; playerId <= 5; playerId++) {
+    for (let i = 0; i < 10; i++) {
       games.push({
-        id: id++,
+        id: (playerId - 1) * 10 + i + 1,
         player_id: playerId,
-        deck_id: deckId,
-        score: Math.floor(Math.random() * 25), //random score 0-24
+        deck_id: (i % 4) + 1, // Cycles through deck_id 1, 2, 3, 4
+        score: Math.floor(Math.random() * 25),
         started_at: knex.fn.now(),
         ended_at: knex.fn.now(),
       });
     }
   }
+  
   await knex("games").insert(games);
 };
-/*
-  await knex("games").insert([
-    { id: 1, deck_id: 1, started_at: knex.fn.now() },
-    { id: 2, deck_id: 1, started_at: knex.fn.now() },
-    { id: 3, deck_id: 1, started_at: knex.fn.now() },
-    { id: 4, deck_id: 2, started_at: knex.fn.now() },
-    { id: 5, deck_id: 2, started_at: knex.fn.now() },
-  ]);
-};
-*/

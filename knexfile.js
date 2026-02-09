@@ -11,7 +11,7 @@ module.exports = {
     connection: {
       host: "localhost",
       user: "root",
-      password: "",
+      password: "flipmaster",
       database: "flipmaster_game",
     },
     migrations: {

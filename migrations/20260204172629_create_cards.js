@@ -14,10 +14,8 @@ exports.up = function (knex) {
       .inTable("decks")
       .onDelete("CASCADE");
 
-    table.string("question").notNullable();
-    table.string("answer").notNullable();
-    //table.string("front").notNullable();
-    //table.string("back").notNullable();
+    table.string("name").notNullable();
+    table.string("link").notNullable();
     table.timestamp("created_at").defaultTo(knex.fn.now());
   });
 };
