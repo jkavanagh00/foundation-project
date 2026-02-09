@@ -1,9 +1,51 @@
 /** @format */
 
+body {
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #dff1ff, #f7faff);
+  margin: 0;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #444;
+  letter-spacing: 1px;
+}
+
+.button {
+  background-color: black;
+  border-radius: 5px;
+  color: #dff1ff;
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 1.5vh;
+  padding: 5px;
+  margin: 5px;
+}
+
+body {
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  background: linear-gradient(90deg, #ffce1b, #e35336);
+  margin: 0;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.title {
+  font-size: 8rem;
+  margin: 0 0 2vh 0;
+  color: #444;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
 .flip-card {
   background-color: transparent;
-  width: 300px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
   perspective: 2000px;
   cursor: pointer;
 }
@@ -21,6 +63,14 @@
   transform: rotateY(180deg);
 }
 
+.flip-card.solved {
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    visibility 0s 2s,
+    opacity 2s linear;
+}
+
 .flip-card-front,
 .flip-card-back {
   position: absolute;
@@ -30,31 +80,160 @@
   backface-visibility: hidden;
 }
 
-.flip-card-front {
+.flip-card-back {
   color: black;
 }
 
-.flip-card-back {
+.flip-card-front {
   transform: rotateY(180deg);
 }
-.game-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 20px;
-  padding: 20px;
-  background-color: aliceblue;
-  border-radius: 10px;
-}
-.flip-card img {
+
+.flip-card-back img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
   border-radius: 10px;
 }
-#game-grid {
+
+.flip-card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.game-grid {
   display: grid;
-  gap: 12px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 20px;
+  width: 90vw;
+  max-width: 800px;
+  aspect-ratio: 1;
+  margin: 0 auto;
+  background-color: #35654d;
+  padding: 15px;
+  border-radius: 20px;
+}
+
+@media (max-width: 480px) {
+  .game-grid {
+    width: 95vw;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .flip-card {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.label {
+  color: #fdc91d;
+  font-size: 1.5rem;
+}
+
+#timer,
+#moves,
+#matches {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #d3d3d3;
+}
+
+#game-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: top;
+  background-image: url("images/table.jpg");
   width: 90%;
-  max-width: 600px;
-  margin: auto;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 12px 18px;
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  color: #333;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Popup container */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+  cursor: pointer;
+  z-index: 100;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+  visibility: hidden;
+  width: 50vw;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 20px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-left: 0;
+}
+
+.popup .popuptext h1 {
+  font-size: 5vw;
+}
+
+.popup .popuptext p {
+  font-size: 2vw;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

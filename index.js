@@ -51,7 +51,7 @@ function shuffle(array) {
   return array;
 }
 
-function initializeCardArray(cards) {
+function initialiseCardArray(cards) {
   const newArray = cards.concat(cards);
   const cardArray = shuffle(newArray);
   return cardArray;
