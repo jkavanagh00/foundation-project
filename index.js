@@ -116,13 +116,12 @@ function attachCardListeners() {
                         cards[lastCard].cardData.solved = true;
                         fadeOutCard(card.cardData.id);
                         matches++;
-                        if (matches === cards.length) {
-                            displayWin();
+                        if (matches === cards.length / 2) {
+                            clearInterval(timerInterval);
+                            displayWin(time, moves, matches);
                         }
-                        console.log(`matches: ${matches}`);
                     } else {
                         moves++;
-                        console.log(`moves: ${moves}`)
                     }
                     // update boolean to track that no card is revealed;
                     isCardShowing = false;
@@ -204,9 +203,15 @@ function updateTimer(time) {
     timer.innerHTML = `${minutes}:${seconds}`;
 }
 
-function displayWin() {
+function displayWin(time, moves, matches) {
     const popup = document.getElementById('win-popup');
+    const score = document.getElementById('score');
     popup.classList.toggle('show');
+    score.innerHTML = `Score: ${calculateScore(time, moves, matches)}`
+}
+
+function calculateScore(time, moves, matches) {
+    return (matches * 100) - (time * 2) - (moves * 5)
 }
 
 function startNewGame() {
