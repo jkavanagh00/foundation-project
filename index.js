@@ -10,27 +10,31 @@ isLocked = false;
 
 async function loadDeck(deckId, numberOfCards = 8) {
 
-    let cards;
     try {
         const response = await fetch(`http://localhost:3000/cards/deck/${deckId}`);
         const allCards = await response.json();
         const selectedCards = shuffle(allCards).slice(0, numberOfCards);
 
-        // Map to your card format
         const cardArray = selectedCards.map(card => ({
             name: card.name,
             link: card.link,
             solved: false,
             flipped: false
         }));
-        cards = [...cardArray, ...cardArray];
+
         console.log(`Loaded ${numberOfCards} cards from deck ${deckId}`);
+        
+        // Create deep copies for matching pairs
+        const pairedCards = [
+            ...cardArray,
+            ...cardArray.map(card => ({ ...card })) // Deep copy each card object
+        ];
+        
+        return shuffle(pairedCards);
     } catch (error) {
         console.error('Error loading deck:', error);
+        return [];
     }
-
-
-    return shuffle(cards);
 }
 
 // Fisher-Yates sorting algorithm;
@@ -108,11 +112,11 @@ function attachCardListeners() {
                     card.cardData.flipped = true;
                 } else {
                     // check if the current card and the last card have the same id;
-                    if (card.cardData.id === cards[lastCard].cardData.id) {
+                    if (card.cardData.name === cards[lastCard].cardData.name) {
                         // update the solved state on both DOM card;
                         card.cardData.solved = true;
                         cards[lastCard].cardData.solved = true;
-                        fadeOutCard(card.cardData.id);
+                        fadeOutCard(card.cardData.name);
                         matches++;
                         if (matches === cards.length / 2) {
                             clearInterval(timerInterval);
@@ -138,7 +142,7 @@ function attachCardListeners() {
     }
 }
 
-function fadeOutCard(id) {
+function fadeOutCard(name) {
     const cards = document.querySelectorAll('.flip-card');
 
     // set a 1.5 second timer before calling the main function logic
@@ -146,7 +150,7 @@ function fadeOutCard(id) {
         // iterate through all DOM cards
         for (let i = 0; i < cards.length; i++) {
             const card = cards[i];
-            if (card.cardData.id === id) {
+            if (card.cardData.name === name) {
                 card.classList.toggle('solved');
             }
         }
@@ -212,13 +216,14 @@ function calculateScore(time, moves, matches) {
     return (matches * 100) - (time * 2) - (moves * 5)
 }
 
-function startNewGame() {
+async function startNewGame() {
     const popupText = document.getElementById('win-popup');
     popupText.classList.remove('show');
 
-    setTimeout(() => {
+    setTimeout(async () => {
         document.getElementById('game-grid').innerHTML = '';
-        populateCardGrid(loadDeck(16, 1));
+        const cards = await loadDeck(1, 8); // Wait for async function
+        populateCardGrid(cards);
         isCardShowing = false;
         isNewGame = true;
         lastCard = null;
@@ -235,4 +240,8 @@ function startNewGame() {
     }, 800);
 }
 
-populateCardGrid(loadDeck(1, 16));
+// On page load
+document.addEventListener('DOMContentLoaded', async () => {
+    const cards = await loadDeck(1, 8);
+    populateCardGrid(cards);
+});
