@@ -3,39 +3,113 @@
 exports.seed = async function (knex) {
   await knex("cards").del();
 
-  const cards = [];
-  //Generate 10 cards for each of the 10 decks
-  for (let deckId = 1; deckId <= 10; deckId++) {
-    for (let i = 1; i <= 10; i++) {
-      cards.push({
-        deck_id: deckId,
-        question: `question ${i} for deck ${deckId}`,
-        answer: `answer ${i} for deck ${deckId}`,
-      });
-    }
-  }
-  //Insert all generated cards
-  await knex("cards").insert(cards);
-  /*
-    {
-      deck_id: 1,
-      question: "what process makes food in plants?",
-      answer: "photosynthesis",
-    },
-    { deck_id: 1, question: "what part absorbs water?", answer: "roots" },
-    { deck_id: 1, question: "what part makes seeds?", answer: "flowers" },
+  await knex("cards").insert([
+    // Deck 1: classic
+    { deck_id: 1, name: "banana", link: "https://i.ibb.co/cKC4fWSL/banana.webp" },
+    { deck_id: 1, name: "basketball", link: "https://i.ibb.co/ks4ZvtJ0/basketball.webp" },
+    { deck_id: 1, name: "boomerang", link: "https://i.ibb.co/bRszJz9N/boomerang.webp" },
+    { deck_id: 1, name: "car", link: "https://i.ibb.co/6RRT4N18/car.webp" },
+    { deck_id: 1, name: "comb", link: "https://i.ibb.co/h1yT9xKC/comb.webp" },
+    { deck_id: 1, name: "controller", link: "https://i.ibb.co/PzsQp9WZ/controller.webp" },
+    { deck_id: 1, name: "feline", link: "https://i.ibb.co/cSHLXHFf/feline.webp" },
+    { deck_id: 1, name: "fish", link: "https://i.ibb.co/7tQbpbfG/fish.webp" },
+    { deck_id: 1, name: "hearts", link: "https://i.ibb.co/mKS0VZy/hearts.webp" },
+    { deck_id: 1, name: "jigsaw", link: "https://i.ibb.co/Y7S6tnvV/jigsaw.webp" },
+    { deck_id: 1, name: "lamp", link: "https://i.ibb.co/1YmgWDg2/lamp.webp" },
+    { deck_id: 1, name: "leaf", link: "https://i.ibb.co/S4Lq0v36/leaf.webp" },
+    { deck_id: 1, name: "plane", link: "https://i.ibb.co/9F79YSK/plane.webp" },
+    { deck_id: 1, name: "spades", link: "https://i.ibb.co/bMNrYgWN/spades.webp" },
+    { deck_id: 1, name: "star", link: "https://i.ibb.co/N2S16ZBk/star.webp" },
+    { deck_id: 1, name: "wing", link: "https://i.ibb.co/DDwGXLJS/wing.webp" },
 
-    {
-      deck_id: 2,
-      question: "what process do animals use to get energy?",
-      answer: "cellular respiration",
-    },
-    {
-      deck_id: 2,
-      question: "what part of the body pumps blood?",
-      answer: "heart",
-    },
+    // Deck 2: colors
+    { deck_id: 2, name: "apricot", link: "https://i.ibb.co/B5ZmhVtW/apricot.webp" },
+    { deck_id: 2, name: "black", link: "https://i.ibb.co/RpM5xJ9G/black.webp" },
+    { deck_id: 2, name: "blue", link: "https://i.ibb.co/5hsGZRYx/blue.webp" },
+    { deck_id: 2, name: "brown", link: "https://i.ibb.co/jZqHkLNK/brown.webp" },
+    { deck_id: 2, name: "green", link: "https://i.ibb.co/4RGGj8tf/green.webp" },
+    { deck_id: 2, name: "lavender", link: "https://i.ibb.co/3yNdvffJ/lavender.webp" },
+    { deck_id: 2, name: "maroon", link: "https://i.ibb.co/N2TD53YM/maroon.webp" },
+    { deck_id: 2, name: "mint", link: "https://i.ibb.co/TqHHpqCC/mint.webp" },
+    { deck_id: 2, name: "navy", link: "https://i.ibb.co/Y4bdd8Bv/navy.webp" },
+    { deck_id: 2, name: "olive", link: "https://i.ibb.co/KxYnRpLV/olive.webp" },
+    { deck_id: 2, name: "orange", link: "https://i.ibb.co/rGW8VbY4/orange.webp" },
+    { deck_id: 2, name: "pink", link: "https://i.ibb.co/DfzGfmkk/pink.webp" },
+    { deck_id: 2, name: "purple", link: "https://i.ibb.co/hRkFvKGm/purple.webp" },
+    { deck_id: 2, name: "red", link: "https://i.ibb.co/356C5CK9/red.webp" },
+    { deck_id: 2, name: "teal", link: "https://i.ibb.co/0pSnK7D3/teal.webp" },
+    { deck_id: 2, name: "yellow", link: "https://i.ibb.co/5WKp28Rw/yellow.webp" },
+
+    // Deck 3: numbers
+    { deck_id: 3, name: "1", link: "https://i.ibb.co/1YvsRRzk/1.webp" },
+    { deck_id: 3, name: "2", link: "https://i.ibb.co/fzKXFGLq/2.webp" },
+    { deck_id: 3, name: "3", link: "https://i.ibb.co/PvFDhNmR/3.webp" },
+    { deck_id: 3, name: "4", link: "https://i.ibb.co/Q3WB8dNC/4.webp" },
+    { deck_id: 3, name: "5", link: "https://i.ibb.co/PGnGCSF7/5.webp" },
+    { deck_id: 3, name: "6", link: "https://i.ibb.co/bMm5JYjG/6.webp" },
+    { deck_id: 3, name: "7", link: "https://i.ibb.co/hJnzR3RN/7.webp" },
+    { deck_id: 3, name: "8", link: "https://i.ibb.co/7N883DG8/8.webp" },
+    { deck_id: 3, name: "9", link: "https://i.ibb.co/KjX1HYMH/9.webp" },
+    { deck_id: 3, name: "10", link: "https://i.ibb.co/ZpG392C8/10.webp" },
+    { deck_id: 3, name: "11", link: "https://i.ibb.co/xS17wTmS/11.webp" },
+    { deck_id: 3, name: "12", link: "https://i.ibb.co/GQtsh46Z/12.webp" },
+    { deck_id: 3, name: "13", link: "https://i.ibb.co/TMCZYQY4/13.webp" },
+    { deck_id: 3, name: "14", link: "https://i.ibb.co/nqQGv7B5/14.webp" },
+    { deck_id: 3, name: "15", link: "https://i.ibb.co/Nkb8hn3/15.webp" },
+    { deck_id: 3, name: "16", link: "https://i.ibb.co/G4hTL7L9/16.webp" },
+
+    // Deck 4: playing-cards
+    { deck_id: 4, name: "2-clubs", link: "https://i.ibb.co/XkX29bD3/2-clubs.webp" },
+    { deck_id: 4, name: "2-diamonds", link: "https://i.ibb.co/KxQmwbRN/2-diamonds.webp" },
+    { deck_id: 4, name: "2-hearts", link: "https://i.ibb.co/60WGtP0m/2-hearts.webp" },
+    { deck_id: 4, name: "2-spades", link: "https://i.ibb.co/fJZ91mp/2-spades.webp" },
+    { deck_id: 4, name: "3-clubs", link: "https://i.ibb.co/vyJ93C6/3-clubs.webp" },
+    { deck_id: 4, name: "3-diamonds", link: "https://i.ibb.co/jk57CnDC/3-diamonds.webp" },
+    { deck_id: 4, name: "3-hearts", link: "https://i.ibb.co/8nX1XbxS/3-hearts.webp" },
+    { deck_id: 4, name: "3-spades", link: "https://i.ibb.co/9kZRHcTS/3-spades.webp" },
+    { deck_id: 4, name: "4-clubs", link: "https://i.ibb.co/7tDYJmPX/4-clubs.webp" },
+    { deck_id: 4, name: "4-diamonds", link: "https://i.ibb.co/bRd1jFvC/4-diamonds.webp" },
+    { deck_id: 4, name: "4-hearts", link: "https://i.ibb.co/vvXTFg6H/4-hearts.webp" },
+    { deck_id: 4, name: "4-spades", link: "https://i.ibb.co/N62XXV6m/4-spades.webp" },
+    { deck_id: 4, name: "5-clubs", link: "https://i.ibb.co/ynD55h6n/5-clubs.webp" },
+    { deck_id: 4, name: "5-diamonds", link: "https://i.ibb.co/pvLPBZrq/5-diamonds.webp" },
+    { deck_id: 4, name: "5-hearts", link: "https://i.ibb.co/7NkSPXH9/5-hearts.webp" },
+    { deck_id: 4, name: "5-spades", link: "https://i.ibb.co/HTwt2KX3/5-spades.webp" },
+    { deck_id: 4, name: "6-clubs", link: "https://i.ibb.co/Ndsq5BLB/6-clubs.webp" },
+    { deck_id: 4, name: "6-diamonds", link: "https://i.ibb.co/4nMQNjyn/6-diamonds.webp" },
+    { deck_id: 4, name: "6-hearts", link: "https://i.ibb.co/F2d4Nkm/6-hearts.webp" },
+    { deck_id: 4, name: "6-spades", link: "https://i.ibb.co/VcSSZPH1/6-spades.webp" },
+    { deck_id: 4, name: "7-clubs", link: "https://i.ibb.co/xKJqz8VW/7-clubs.webp" },
+    { deck_id: 4, name: "7-diamonds", link: "https://i.ibb.co/1JhkPV4r/7-diamonds.webp" },
+    { deck_id: 4, name: "7-hearts", link: "https://i.ibb.co/Q3pV3pV0/7-hearts.webp" },
+    { deck_id: 4, name: "7-spades", link: "https://i.ibb.co/Xxy1vwfH/7-spades.webp" },
+    { deck_id: 4, name: "8-clubs", link: "https://i.ibb.co/wZT7S406/8-clubs.webp" },
+    { deck_id: 4, name: "8-diamonds", link: "https://i.ibb.co/C57hJCGp/8-diamonds.webp" },
+    { deck_id: 4, name: "8-hearts", link: "https://i.ibb.co/s9GZtMTf/8-hearts.webp" },
+    { deck_id: 4, name: "8-spades", link: "https://i.ibb.co/Fk495xGH/8-spades.webp" },
+    { deck_id: 4, name: "9-clubs", link: "https://i.ibb.co/TBKckqtc/9-clubs.webp" },
+    { deck_id: 4, name: "9-diamonds", link: "https://i.ibb.co/Knx4yWY/9-diamonds.webp" },
+    { deck_id: 4, name: "9-hearts", link: "https://i.ibb.co/RtKmwjR/9-hearts.webp" },
+    { deck_id: 4, name: "9-spades", link: "https://i.ibb.co/WvppjcZ3/9-spades.webp" },
+    { deck_id: 4, name: "10-clubs", link: "https://i.ibb.co/KCgzVX7/10-clubs.webp" },
+    { deck_id: 4, name: "10-diamonds", link: "https://i.ibb.co/1t2BWdhz/10-diamonds.webp" },
+    { deck_id: 4, name: "10-hearts", link: "https://i.ibb.co/vC7mTRQ4/10-hearts.webp" },
+    { deck_id: 4, name: "10-spades", link: "https://i.ibb.co/PzWtrs7K/10-spades.webp" },
+    { deck_id: 4, name: "ace-clubs", link: "https://i.ibb.co/99snNyj4/ace-clubs.webp" },
+    { deck_id: 4, name: "ace-diamonds", link: "https://i.ibb.co/JFgP2p9q/ace-diamonds.webp" },
+    { deck_id: 4, name: "ace-hearts", link: "https://i.ibb.co/XfmQY8QB/ace-hearts.webp" },
+    { deck_id: 4, name: "ace-spades", link: "https://i.ibb.co/fG1Bv7C7/ace-spades.webp" },
+    { deck_id: 4, name: "jack-clubs", link: "https://i.ibb.co/0j8cWZVL/jack-clubs.webp" },
+    { deck_id: 4, name: "jack-diamonds", link: "https://i.ibb.co/Vch3xRr6/jack-diamonds.webp" },
+    { deck_id: 4, name: "jack-hearts", link: "https://i.ibb.co/Ndf62F1n/jack-hearts.webp" },
+    { deck_id: 4, name: "jack-spades", link: "https://i.ibb.co/GBssKYZ/jack-spades.webp" },
+    { deck_id: 4, name: "king-clubs", link: "https://i.ibb.co/8qgf7rg/king-clubs.webp" },
+    { deck_id: 4, name: "king-diamonds", link: "https://i.ibb.co/CsMS4QFV/king-diamonds.webp" },
+    { deck_id: 4, name: "king-hearts", link: "https://i.ibb.co/yBbq0Fdj/king-hearts.webp" },
+    { deck_id: 4, name: "king-spades", link: "https://i.ibb.co/B2Fgy31X/king-spades.webp" },
+    { deck_id: 4, name: "queen-clubs", link: "https://i.ibb.co/wZpSNrD3/queen-clubs.webp" },
+    { deck_id: 4, name: "queen-diamonds", link: "https://i.ibb.co/7JBtgQTy/queen-diamonds.webp" },
+    { deck_id: 4, name: "queen-hearts", link: "https://i.ibb.co/dJKd4pK0/queen-hearts.webp" },
+    { deck_id: 4, name: "queen-spades", link: "https://i.ibb.co/b5XptbxH/queen-spades.webp" }
   ]);
-
-*/
 };
