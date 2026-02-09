@@ -1,4 +1,3 @@
-cards = createCardArray(8);
 isCardShowing = false;
 isNewGame = true;
 lastCard = null;
@@ -9,30 +8,29 @@ timerInterval = null;
 isLocked = false;
 
 
-function createCardArray(targetLength) {
-    const cardNames = ["boomerang", "comb", "feline", "hearts", "leaf", "spades", "star", "wing"];
-    const cardArray = [];
-    for (let i = 0; i < targetLength; i++) {
-        cardArray.push({
-            name: cardNames[i],
-            id: i + 1,
-            location: `images/${cardNames[i]}.png`,
+async function loadDeck(deckId, numberOfCards = 8) {
+
+    let cards;
+    try {
+        const response = await fetch(`http://localhost:3000/cards/deck/${deckId}`);
+        const allCards = await response.json();
+        const selectedCards = shuffle(allCards).slice(0, numberOfCards);
+
+        // Map to your card format
+        const cardArray = selectedCards.map(card => ({
+            name: card.name,
+            link: card.link,
             solved: false,
             flipped: false
-        })
+        }));
+        cards = [...cardArray, ...cardArray];
+        console.log(`Loaded ${numberOfCards} cards from deck ${deckId}`);
+    } catch (error) {
+        console.error('Error loading deck:', error);
     }
 
-    return cardArray;
-}
 
-// creates a doubled and shuffled copy of the hard-coded cards array above;
-function initialiseCardArray(cards) {
-    // double card array so that each card appears twice;
-    const cardsCopy = cards.map(card => ({ ...card }));
-    const newArray = cards.concat(cardsCopy);
-    // shuffle and return;
-    const cardArray = shuffle(newArray);
-    return cardArray;
+    return shuffle(cards);
 }
 
 // Fisher-Yates sorting algorithm;
@@ -59,7 +57,7 @@ function populateCardGrid(cardArray) {
                 <img src="images/back.png" alt="card back">
             </div>
             <div class="flip-card-front">
-                <img src="${cardArray[i].location}" alt="card front">
+                <img src="${cardArray[i].link}" alt="card front">
             </div>
         </div>
     </div>`;
@@ -220,8 +218,7 @@ function startNewGame() {
 
     setTimeout(() => {
         document.getElementById('game-grid').innerHTML = '';
-        cards = createCardArray(8);
-        populateCardGrid(initialiseCardArray(cards));
+        populateCardGrid(loadDeck(16, 1));
         isCardShowing = false;
         isNewGame = true;
         lastCard = null;
@@ -238,4 +235,4 @@ function startNewGame() {
     }, 800);
 }
 
-populateCardGrid(initialiseCardArray(cards));
+populateCardGrid(loadDeck(1, 16));
