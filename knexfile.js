@@ -24,13 +24,14 @@ module.exports = {
     },
   },
   production: {
-    client: "mysql2",
+    client: "pg",
     connection: {
-      host: process.env.DATABASE_HOST,
-      user: process.env.DATABASE_USER,
-      password: process.env.DATABASE_PASSWORD,
-      database: process.env.DATABASE_NAME,
+      connectionString: process.env.DATABASE_URL,
       ssl: { rejectUnauthorized: false },
+    },
+    pool: {
+      min: 2,
+      max: 10,
     },
     migrations: {
       directory: "./migrations",
