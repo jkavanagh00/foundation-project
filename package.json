@@ -4,7 +4,8 @@
   "description": "Foundation project for Hack Your Future. Memory game made according to the following brief: https://program.hackyourfuture.dk/course-content/foundation/final-project/project-brief",
   "main": "index.js",
   "scripts": {
-    "start": "npm run migrate && npm run seed && node src/server.js",
+    "start": "node src/server.js",
+    "build": "npm install && npm run migrate && npm run seed",
     "migrate": "knex migrate:latest",
     "seed": "knex seed:run",
     "test": "echo \"Error: no test specified\" && exit 1"
