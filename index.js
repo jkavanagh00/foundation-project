@@ -253,6 +253,13 @@ async function startNewGame(confirmGame = false) {
   }
 }
 
+function hidePopups() {
+  const winPopup = document.getElementById("win-popup");
+  const newGamePopup = document.getElementById("new-game-popup");
+  winPopup.classList.remove('show');
+  newGamePopup.classList.remove('show');
+}
+
 // On page load
 document.addEventListener("DOMContentLoaded", () => {
   startNewGame();

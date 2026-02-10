@@ -26,6 +26,21 @@ body {
   margin: 5px;
 }
 
+.icon {
+  background-color: white;
+  border-radius: 20px;
+  border: none;
+  padding: 0;
+  line-height: 0;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.icon img {
+  display: block;
+}
+
 body {
   font-family: "Segoe UI", Arial, Helvetica, sans-serif;
   background: linear-gradient(90deg, #ffce1b, #e35336);
@@ -180,7 +195,7 @@ body {
 /* The actual popup (appears on top) */
 .popup .popuptext {
   visibility: hidden;
-  width: 50vw;
+  width: 25vw;
   background-color: #555;
   color: #fff;
   text-align: center;
@@ -195,11 +210,11 @@ body {
 }
 
 .popup .popuptext h1 {
-  font-size: 5vw;
+  font-size: 2.5vw;
 }
 
 .popup .popuptext p {
-  font-size: 2vw;
+  font-size: 1vw;
 }
 
 /* Popup arrow */

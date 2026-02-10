@@ -12,12 +12,15 @@
     <h1 class="title">FlipMaster</h1>
     <div class="popup">
         <span class="popuptext" id="win-popup">
+            <button class="icon" onclick="hidePopups()"><img src="images/close.png" alt="close"></button>
             <h1>You win!</h1>
             <p id="score"></p>
-            <p>Would you like to play again?</p> 
+            <p>Would you like to play again?</p>
             <button class="button" onclick="startNewGame()">New Game</button>
         </span>
         <span class="popuptext" id="new-game-popup">
+            <button class="icon" onclick="hidePopups()"><img src="images/close.png" alt="close"></button>
+
             <h1>New Game</h1>
             <select name="deck-selector" id="deck-selector">
                 <option value="1">Classic</option>
@@ -35,7 +38,7 @@
             <button class="button" onclick="startNewGame(true)">Start</button>
         </span>
     </div>
-    <button class="button" onclick="startNewGame()">New Game</button>
+    <button onclick="startNewGame()">New Game</button>
     <div class="game-grid" id="game-grid"></div>
     <div id="game-stats">
         <div class="stat">
