@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/server.js",
-    "build": "npm install && node node_modules/.bin/knex migrate:latest && node node_modules/.bin/knex seed:run",
+    "build": "npm install && node runMigrations.js",
     "migrate": "npx knex migrate:latest",
     "seed": "npx knex seed:run",
     "test": "echo \"Error: no test specified\" && exit 1"
