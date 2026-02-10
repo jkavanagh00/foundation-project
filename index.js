@@ -11,7 +11,7 @@ isLocked = false;
 
 async function loadDeck(deckId, numberOfCards = 8) {
   try {
-    const response = await fetch(`http://localhost:3000/cards/deck/${deckId}`);
+    const response = await fetch(`https://flipmaster-backend.onrender.com/cards/deck/${deckId}`);
     const allCards = await response.json();
     const selectedCards = shuffle(allCards).slice(0, numberOfCards);
 
