@@ -150,6 +150,8 @@ body {
 @media (max-width: 480px) {
   .game-grid {
     width: 95vw;
+    min-width: unset;
+    min-height: unset;
     gap: 8px;
     padding: 10px;
   }
