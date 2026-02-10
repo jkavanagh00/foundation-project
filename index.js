@@ -217,32 +217,43 @@ function calculateScore(time, moves, matches) {
   return matches * 100 - time * 2 - moves * 5;
 }
 
-async function startNewGame() {
-  const popupText = document.getElementById("win-popup");
-  popupText.classList.remove("show");
+async function startNewGame(confirmGame = false) {
+  const winPopup = document.getElementById("win-popup");
+  const newGamePopup = document.getElementById("new-game-popup");
 
-  setTimeout(async () => {
-    document.getElementById("game-grid").innerHTML = "";
-    const cards = await loadDeck(1, 8); // Wait for async function
-    populateCardGrid(cards);
-    isCardShowing = false;
-    isNewGame = true;
-    lastCard = null;
-    time = 0;
-    moves = 0;
-    matches = 0;
-    updateCounters(moves, matches);
-    updateTimer(time);
-    if (timerInterval) {
-      clearInterval(timerInterval);
-      resetAllCards();
-      timerInterval = null;
-    }
-  }, 800);
+  if (!confirmGame) {
+    // Show the new game popup
+    winPopup.classList.remove("show");
+    newGamePopup.classList.add("show");
+  } else {
+    // Start the game with selected options
+    const deckId = document.getElementById("deck-selector").value;
+    const numberOfCards = document.getElementById("quantity-selector").value;
+
+    newGamePopup.classList.remove("show");
+
+    setTimeout(async () => {
+      document.getElementById("game-grid").innerHTML = "";
+      const cards = await loadDeck(deckId, numberOfCards);
+      populateCardGrid(cards);
+      isCardShowing = false;
+      isNewGame = true;
+      lastCard = null;
+      time = 0;
+      moves = 0;
+      matches = 0;
+      updateCounters(moves, matches);
+      updateTimer(time);
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        resetAllCards();
+        timerInterval = null;
+      }
+    }, 800);
+  }
 }
 
 // On page load
-document.addEventListener("DOMContentLoaded", async () => {
-  const cards = await loadDeck(1, 8);
-  populateCardGrid(cards);
+document.addEventListener("DOMContentLoaded", () => {
+  startNewGame();
 });

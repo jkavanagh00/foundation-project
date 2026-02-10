@@ -44,8 +44,8 @@ body {
 
 .flip-card {
   background-color: transparent;
-  width: 100%;
-  max-width: 200px;
+  width: 150px;
+  height: 150px;
   aspect-ratio: 1;
   perspective: 2000px;
   cursor: pointer;
@@ -107,8 +107,10 @@ body {
   grid-auto-columns: 1fr;
   grid-auto-flow: column;
   gap: 20px;
-  height: 90vh;
+  height: fit-content;
+  min-height: 690px;
   width: fit-content;
+  min-width: 690px;
   margin: 0 auto;
   background-color: #00512c;
   padding: 15px;
