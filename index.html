@@ -22,23 +22,29 @@
             <button class="icon" onclick="hidePopups()"><img src="images/close.png" alt="close"></button>
 
             <h1>New Game</h1>
-            <select name="deck-selector" id="deck-selector">
-                <option value="1">Classic</option>
-                <option value="2">Colors</option>
-                <option value="3">Numbers</option>
-                <option value="4">Playing Cards</option>
-            </select>
-            <select name="quantity-selector" id="quantity-selector">
-                <option value="8">16</option>
-                <option value="10">20</option>
-                <option value="12">24</option>
-                <option value="14">28</option>
-                <option value="16">32</option>
-            </select>
-            <button class="button" onclick="startNewGame(true)">Start</button>
+            <div class="new-game-controls">
+                <div class="labels">
+                    Deck:<br>Cards:
+                </div>
+                <div class="game-options">
+                    <select name="deck-selector" id="deck-selector">
+                        <option value="1">Classic</option>
+                        <option value="2">Colors</option>
+                        <option value="3">Numbers</option>
+                        <option value="4">Playing Cards</option>
+                    </select>
+                    <select name="quantity-selector" id="quantity-selector">
+                        <option value="8">16</option>
+                        <option value="10">20</option>
+                        <option value="12">24</option>
+                        <option value="14">28</option>
+                        <option value="16">32</option>
+                    </select>
+                </div>
+                <button class="button" id="popup-button" onclick="startNewGame(true)">Start</button>
+            </div>
         </span>
     </div>
-    <button onclick="startNewGame()">New Game</button>
     <div class="game-grid" id="game-grid"></div>
     <div id="game-stats">
         <div class="stat">
@@ -53,6 +59,7 @@
             <span class="label">Matches</span>
             <span id="matches">0</span>
         </div>
+        <button class="button" onclick="startNewGame()">New Game</button>
     </div>
     <script src="index.js"></script>
 </body>
