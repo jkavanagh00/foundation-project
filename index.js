@@ -11,7 +11,9 @@ isLocked = false;
 
 async function loadDeck(deckId, numberOfCards = 8) {
   try {
-    const response = await fetch(`https://flipmaster-backend.onrender.com/cards/deck/${deckId}`);
+    const response = await fetch(
+      `https://flipmaster-backend.onrender.com/cards/deck/${deckId}`,
+    );
     const allCards = await response.json();
     const selectedCards = shuffle(allCards).slice(0, numberOfCards);
 
@@ -256,8 +258,38 @@ async function startNewGame(confirmGame = false) {
 function hidePopups() {
   const winPopup = document.getElementById("win-popup");
   const newGamePopup = document.getElementById("new-game-popup");
-  winPopup.classList.remove('show');
-  newGamePopup.classList.remove('show');
+  winPopup.classList.remove("show");
+  newGamePopup.classList.remove("show");
+}
+document
+  .getElementById("loadLeaderboard")
+  .addEventListener("click", loadLeaderboard);
+
+async function loadLeaderboard() {
+  try {
+    const response = await fetch(
+      "https://flipmaster-backend.onrender.com/leaderboard",
+    );
+    const data = await response.json();
+
+    const tbody = document.querySelector("#leaderboardTable tbody");
+    tbody.innerHTML = ""; // clear old rows
+
+    data.forEach((player) => {
+      const row = document.createElement("tr");
+
+      row.innerHTML = `
+        <td>${player.name}</td>
+        <td>${player.total_score}</td>
+        <td>${player.games_played}</td>
+        <td>${player.best_score}</td>
+      `;
+
+      tbody.appendChild(row);
+    });
+  } catch (error) {
+    console.error("Failed to load leaderboard:", error);
+  }
 }
 
 // On page load
