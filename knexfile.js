@@ -1,6 +1,6 @@
 /** @format */
 
-require('dotenv').config();
+require("dotenv").config();
 
 // Update with your config settings.
 
@@ -13,7 +13,7 @@ module.exports = {
     connection: {
       host: process.env.DATABASE_HOST || "localhost",
       user: process.env.DATABASE_USER || "root",
-      password: process.env.DATABASE_PASSWORD || "flipmaster",
+      password: process.env.DATABASE_PASSWORD || "Ha@123456",
       database: process.env.DATABASE_NAME || "flipmaster_game",
     },
     migrations: {
