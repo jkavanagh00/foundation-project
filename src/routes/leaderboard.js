@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
         "players.id",
         "players.name",
         db.raw("coalesce(sum(games.score),0) as total_score"),
-        db.raw("count(games.id) as games_played"),
+        db.raw("coalesce(count(games.id),0) as games_played"),
         db.raw("coalesce(max(games.score),0) as best_score"),
       )
       .groupBy("players.id", "players.name")
