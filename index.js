@@ -1,13 +1,15 @@
 /** @format */
 
-isCardShowing = false;
-isNewGame = true;
-lastCard = null;
-time = 0;
-moves = 0;
-matches = 0;
-timerInterval = null;
-isLocked = false;
+let isCardShowing = false;
+let isNewGame = true;
+let lastCard = null;
+let time = 0;
+let moves = 0;
+let matches = 0;
+let timerInterval = null;
+let isLocked = false;
+let currentGameId = null;
+let currentPlayerName = "";
 
 async function loadDeck(deckId, numberOfCards = 8) {
   try {
@@ -210,13 +212,26 @@ function updateTimer(time) {
 
 function displayWin(time, moves, matches) {
   const popup = document.getElementById("win-popup");
+  const scoreValue = calculateScore(time, moves, matches);
+  function calculateScore(time, moves, matches) {
+    return Math.max(0, matches * 100 - moves * 5 - time);
+  }
+  if (currentGameId) {
+    fetch(`https://flipmaster-backend.onrender.com/games/${currentGameId}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ score: scoreValue }),
+    })
+      .then(() => {
+        loadLeaderboard();
+      })
+      .catch((err) => console.error("Failed to update game:", err));
+  } else {
+    console.warn("No currentGameID set - cannot save score");
+  }
   const score = document.getElementById("score");
-  popup.classList.toggle("show");
-  score.innerHTML = `Score: ${calculateScore(time, moves, matches)}`;
-}
-
-function calculateScore(time, moves, matches) {
-  return matches * 100 - time * 2 - moves * 5;
+  score.innerHTML = `Score: ${scoreValue}`;
+  popup.classList.add("show");
 }
 
 async function startNewGame(confirmGame = false) {
@@ -228,16 +243,36 @@ async function startNewGame(confirmGame = false) {
     winPopup.classList.remove("show");
     newGamePopup.classList.add("show");
   } else {
-    // Start the game with selected options
     const deckId = document.getElementById("deck-selector").value;
     const numberOfCards = document.getElementById("quantity-selector").value;
+    const playerName = document.getElementById("player-name").value.trim();
+    if (!playerName) {
+      alert("Please enter a player name");
+      return;
+    }
+    currentPlayerName = playerName; // store player name
 
     newGamePopup.classList.remove("show");
+    const startResponse = await fetch(
+      `https://flipmaster-backend.onrender.com/games`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          deck_id: deckId,
+          player_name: playerName,
+        }),
+      },
+    );
+
+    const startData = await startResponse.json();
+    currentGameId = startData.game_id; //store game ID
 
     setTimeout(async () => {
       document.getElementById("game-grid").innerHTML = "";
       const cards = await loadDeck(deckId, numberOfCards);
       populateCardGrid(cards);
+      //Reset game state
       isCardShowing = false;
       isNewGame = true;
       lastCard = null;
@@ -268,7 +303,7 @@ document
 async function loadLeaderboard() {
   try {
     const response = await fetch(
-      "https://flipmaster-backend.onrender.com/leaderboard",
+      `https://flipmaster-backend.onrender.com/leaderboard?nocache=${Date.now()}`,
     );
     const data = await response.json();
 
