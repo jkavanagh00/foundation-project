@@ -260,7 +260,6 @@ async function startNewGame(confirmGame = false) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           deck_id: deckId,
-          player_name: playerName,
         }),
       },
     );
