@@ -46,7 +46,9 @@ Core game logic class containing:
 - Vanilla JavaScript
 - CSS3
 - HTML5
+- MYSQL(Database)
 - PostgreSQL (for Render deployment)
+- postman(for API checkup)
 
 ## Future improvements
 
