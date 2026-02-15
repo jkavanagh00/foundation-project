@@ -9,7 +9,6 @@ let matches = 0;
 let timerInterval = null;
 let isLocked = false;
 let currentGameId = null;
-let currentPlayerName = "";
 
 async function loadDeck(deckId, numberOfCards = 8) {
   try {
@@ -313,7 +312,6 @@ async function loadLeaderboard() {
       const row = document.createElement("tr");
 
       row.innerHTML = `
-        <td>${player.name}</td>
         <td>${player.total_score}</td>
         <td>${player.games_played}</td>
         <td>${player.best_score}</td>
