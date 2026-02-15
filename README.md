@@ -3,12 +3,15 @@
 ## Project Description
 Foundation project for Hack Your Future. Memory game made according to the following brief: https://program.hackyourfuture.dk/course-content/foundation/final-project/project-brief
 
-## Features
+## Core Features
 - Single player card-matching memory game
 - Animated flip cards
 - Win detection
 - Shuffling algorithm
-- Responsive design
+
+## Extra Features
+- Moves and matches tracking
+- Game timer
 - Scoring system
 - Multiple card decks
 - Games of different sizes
