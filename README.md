@@ -9,6 +9,9 @@ Foundation project for Hack Your Future. Memory game made according to the follo
 - Win detection
 - Shuffling algorithm
 - Responsive design
+- Scoring system
+- Multiple card decks
+- Games of different sizes
 
 ## Project Structure
 
@@ -40,13 +43,11 @@ Core game logic class containing:
 - Vanilla JavaScript
 - CSS3
 - HTML5
+- PostgreSQL (for Render deployment)
 
 ## Future improvements
 
-- Backend database for storing card content and scores
-- Difficulty levels
-- Grid sizes
-- Scoring system
+- Backend database for storing scores
 - Leaderboard
 - Personal Best Tracking
 - Sound & Animations
@@ -56,6 +57,4 @@ Core game logic class containing:
 
 ## Known Issues
 
-- Starting a new game does not reset the time variable and thereby breaks the timer display in the browser
-- Starting a new game does not properly reset the counters
-- Card images should be scaled to 80% of total card size
+- Leaderboard feature is implemented but still has several bugs
