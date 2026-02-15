@@ -284,7 +284,7 @@ async function startNewGame(confirmGame = false) {
         resetAllCards();
         timerInterval = null;
       }
-    }, 800);
+    }, 1);
   }
 }
 
