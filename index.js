@@ -165,7 +165,7 @@ function fadeOutCard(name) {
 
 function resetCards() {
   const cards = document.querySelectorAll(".flip-card");
-  // lock input at start of reset;
+  // lock input at of reset;
   isLocked = true;
 
   setTimeout(() => {
@@ -245,12 +245,12 @@ async function startNewGame(confirmGame = false) {
   } else {
     const deckId = document.getElementById("deck-selector").value;
     const numberOfCards = document.getElementById("quantity-selector").value;
-    const playerName = document.getElementById("player-name").value.trim();
-    if (!playerName) {
-      alert("Please enter a player name");
-      return;
-    }
-    currentPlayerName = playerName; // store player name
+    // const playerName = document.getElementById("player-name").value.trim();
+    // if (!playerName) {
+    //   alert("Please enter a player name");
+    //   return;
+    // }
+    // currentPlayerName = playerName; // store player name
 
     newGamePopup.classList.remove("show");
     const startResponse = await fetch(
